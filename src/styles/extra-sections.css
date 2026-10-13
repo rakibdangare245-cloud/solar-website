@@ -1,0 +1,256 @@
+﻿/* ---------------- HOW SOLAR WORKS ---------------- */
+.flow {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+.flow__head { max-width: 720px; margin-bottom: clamp(40px, 6vh, 72px); }
+.flow__eyebrow {
+  display: block; font-size: 0.68rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.flow__title {
+  margin-top: 16px; font-size: clamp(1.8rem, 3.6vw, 3rem); line-height: 1.05;
+  letter-spacing: -0.03em; font-weight: 500; text-transform: uppercase;
+}
+.flow__lede {
+  margin-top: 18px; max-width: 52ch; font-size: 1rem; line-height: 1.65; color: var(--ink-dim);
+}
+.flow__diagram { margin-top: clamp(30px, 5vh, 60px); }
+.flow__diagram svg { width: 100%; height: auto; overflow: visible; }
+.flow__path-base { stroke: rgba(242,239,233,0.14); stroke-width: 1; }
+.flow__path-stream {
+  stroke: var(--accent); stroke-width: 1.6;
+  stroke-dasharray: 800; stroke-dashoffset: 800;
+}
+.flow__dot { fill: var(--accent); filter: drop-shadow(0 0 6px rgba(232,163,61,0.8)); }
+.flow__node {
+  fill: var(--bg); stroke: rgba(242,239,233,0.6); stroke-width: 1;
+}
+.flow__label {
+  fill: rgba(242,239,233,0.7); font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; font-family: var(--font-sans);
+}
+
+/* ---------------- INSTALLATION PROCESS ---------------- */
+.proc {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+}
+.proc__grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+}
+.proc__aside { position: sticky; top: 116px; align-self: start; }
+.proc__eyebrow {
+  display: block; font-size: 0.68rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.proc__title {
+  margin-top: 16px; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.04;
+  letter-spacing: -0.03em; font-weight: 500; text-transform: uppercase;
+}
+.proc__lede {
+  margin-top: 18px; max-width: 34ch; font-size: 0.94rem; line-height: 1.65; color: var(--ink-dim);
+}
+.proc__list {
+  position: relative; display: flex; flex-direction: column;
+  padding-left: 44px; list-style: none;
+}
+.proc__rail {
+  position: absolute; left: 20px; top: 0; bottom: 0; width: 1px;
+  background: var(--line); display: block;
+}
+.proc__rail-fill {
+  position: absolute; inset: 0; display: block;
+  background: var(--accent); transform: scaleY(0); transform-origin: top center;
+}
+.proc__step {
+  position: relative; display: grid;
+  grid-template-columns: 40px 1fr; gap: 24px;
+  padding: clamp(20px, 3vh, 32px) 0;
+  border-bottom: 1px solid var(--line);
+  will-change: transform, opacity;
+}
+.proc__step:last-child { border-bottom: 0; }
+.proc__num {
+  font-size: 0.72rem; letter-spacing: 0.22em; color: var(--accent);
+  font-variant-numeric: tabular-nums; padding-top: 6px;
+}
+.proc__step-title {
+  font-size: clamp(1.15rem, 1.8vw, 1.6rem); line-height: 1.1;
+  letter-spacing: -0.02em; font-weight: 500; text-transform: uppercase;
+}
+.proc__step-text {
+  margin-top: 10px; max-width: 56ch; font-size: 0.94rem;
+  line-height: 1.65; color: var(--ink-dim);
+}
+
+/* ---------------- TRUST & QUALITY ---------------- */
+.trust {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+.trust__head { max-width: 720px; margin-bottom: clamp(40px, 6vh, 72px); }
+.trust__eyebrow {
+  display: block; font-size: 0.68rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.trust__title {
+  margin-top: 16px; font-size: clamp(1.8rem, 3.4vw, 2.8rem); line-height: 1.05;
+  letter-spacing: -0.03em; font-weight: 500; text-transform: uppercase;
+}
+.trust__grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px); list-style: none;
+}
+.trust__item {
+  padding-top: 24px; border-top: 1px solid var(--line-strong);
+  will-change: transform, opacity;
+}
+.trust__num {
+  display: block; font-size: 0.7rem; letter-spacing: 0.24em;
+  color: var(--ink-faint); font-variant-numeric: tabular-nums;
+}
+.trust__item-title {
+  margin-top: 18px; font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  line-height: 1.15; letter-spacing: -0.015em; font-weight: 500; text-transform: uppercase;
+}
+.trust__item-text {
+  margin-top: 12px; font-size: 0.92rem; line-height: 1.6; color: var(--ink-dim);
+}
+@media (max-width: 1023px) {
+  .trust__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .trust__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------------- CONSULTATION ---------------- */
+.consult {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+}
+.consult__grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+}
+.consult__eyebrow {
+  display: block; font-size: 0.68rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.consult__title {
+  margin-top: 16px; font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.04;
+  letter-spacing: -0.03em; font-weight: 500; text-transform: uppercase;
+}
+.consult__lede {
+  margin-top: 18px; max-width: 36ch; font-size: 0.94rem;
+  line-height: 1.65; color: var(--ink-dim);
+}
+.consult__form {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 24px;
+}
+.consult__field {
+  display: flex; flex-direction: column; gap: 8px;
+  will-change: transform, opacity;
+}
+.consult__field--full { grid-column: 1 / -1; }
+.consult__field label,
+.consult__field legend {
+  font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.consult__field input[type="text"],
+.consult__field input[type="email"],
+.consult__field input[type="tel"],
+.consult__field textarea {
+  width: 100%; padding: 12px 0;
+  background: transparent; border: 0; border-bottom: 1px solid var(--line-strong);
+  color: var(--ink); font: inherit; font-size: 1rem; line-height: 1.4;
+  transition: border-color 0.3s ease;
+}
+.consult__field input:focus,
+.consult__field textarea:focus {
+  outline: none; border-bottom-color: var(--accent);
+}
+.consult__field textarea { resize: vertical; min-height: 100px; }
+.consult__field[aria-invalid="true"] input,
+.consult__field input[aria-invalid="true"] { border-bottom-color: #e05b4a; }
+
+.consult__radios { display: flex; gap: 22px; margin-top: 6px; }
+.consult__radio {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.92rem; color: var(--ink-dim); cursor: pointer;
+}
+.consult__radio input { accent-color: var(--accent); }
+.consult__radio span { letter-spacing: 0.02em; }
+
+.consult__err { font-size: 0.78rem; color: #e05b4a; }
+
+.consult__submit {
+  grid-column: 1 / -1; justify-self: start; margin-top: 8px;
+  height: 52px; padding: 0 30px;
+  background: var(--ink); color: var(--bg-deep);
+  border: 0; border-radius: 999px;
+  font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  will-change: transform, opacity;
+}
+.consult__submit:hover { background: var(--accent); color: var(--bg-deep); }
+
+.consult__success {
+  padding: 40px; border: 1px solid var(--line-strong); border-radius: 4px;
+}
+.consult__success h3 {
+  font-size: clamp(1.4rem, 2vw, 1.8rem); text-transform: uppercase;
+  letter-spacing: -0.02em; font-weight: 500;
+}
+.consult__success p { margin-top: 12px; color: var(--ink-dim); }
+
+@media (max-width: 900px) {
+  .proc__grid,
+  .consult__grid { grid-template-columns: 1fr; }
+  .proc__aside { position: static; }
+  .consult__form { grid-template-columns: 1fr; }
+}
+/* Tablet — process step grid tighter */
+@media (min-width: 641px) and (max-width: 900px) {
+  .proc__step {
+    grid-template-columns: 32px minmax(0, 1fr) !important;
+    gap: 18px !important;
+  }
+}
+/* Phone — process step stacks */
+@media (max-width: 640px) {
+  .proc__step {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    padding: 22px 0 !important;
+  }
+  .proc__num { padding-top: 0; }
+}
+
+/* Flow diagram — allow horizontal swipe on phone */
+@media (max-width: 767px) {
+  .flow__diagram {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 0 var(--gutter);
+  }
+  .flow__diagram svg {
+    min-width: 640px;
+    width: auto;
+  }
+}

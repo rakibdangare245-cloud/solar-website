@@ -1,0 +1,35 @@
+﻿// Set theme before React mounts to avoid flash
+(function () {
+  const stored = localStorage.getItem('solar-theme');
+  const initial = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  document.documentElement.dataset.theme = initial;
+})();
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import { initSmoothScroll } from './lib/smoothScroll';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
+
+import './styles/global.css';
+import './styles/loader.css';
+import './styles/navigation.css';
+import './styles/hero.css';
+import './styles/story.css';
+import './styles/cursor.css';
+import './styles/sliders.css';
+import './styles/horizontal.css';
+import './styles/presentation.css';
+import './styles/cta.css';
+import './styles/extra-sections.css';
+import './styles/marquee.css';
+import './styles/chapters.css';
+
+initSmoothScroll();
+
+const container = document.getElementById('root');
+if (!container) throw new Error('Root element #root not found.');
+
+createRoot(container).render(<App />);

@@ -1,0 +1,61 @@
+﻿.story { position: relative; padding: var(--section-y) 0; background: var(--bg); border-top: 1px solid var(--line); }
+.story__grid { display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); }
+.story__aside { position: sticky; top: 116px; align-self: start; }
+.story__eyebrow { display: block; font-size: 0.68rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--ink-faint); }
+.story__title { margin-top: 16px; font-size: clamp(1.8rem, 2.8vw, 2.6rem); line-height: 1.02; letter-spacing: -0.03em; font-weight: 500; text-transform: uppercase; }
+.story__lede { margin-top: 18px; max-width: 34ch; font-size: 0.94rem; line-height: 1.65; color: var(--ink-dim); }
+.story__progress { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.story__progress-rail { position: relative; display: block; width: 76px; height: 1px; background: var(--line); }
+.story__progress-fill { position: absolute; inset: 0; display: block; background: var(--accent); transform: scaleY(1); transform-origin: top center; }
+.story__progress-label { font-size: 0.68rem; letter-spacing: 0.24em; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.story__stages { display: flex; flex-direction: column; }
+.stage {
+  display: grid; grid-template-columns: 56px minmax(0, 1fr) clamp(140px, 16vw, 200px);
+  gap: clamp(16px, 3vw, 40px); align-items: start;
+  padding: clamp(32px, 5vh, 56px) 0;
+  border-top: 1px solid var(--line); will-change: transform, opacity;
+}
+.stage:last-child { border-bottom: 1px solid var(--line); }
+.stage__index { padding-top: 6px; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.stage__title { font-size: clamp(1.35rem, 2.2vw, 2.1rem); line-height: 1.06; letter-spacing: -0.025em; font-weight: 500; text-transform: uppercase; }
+.stage__desc { margin-top: 14px; max-width: 48ch; font-size: 0.95rem; line-height: 1.65; color: var(--ink-dim); }
+.stage__art { width: 100%; height: auto; color: var(--ink-faint); }
+@media (max-width: 1023px) {
+  .story__grid { grid-template-columns: 1fr; }
+  .story__aside { position: static; }
+  .stage { grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: 'index body' '. art'; row-gap: 24px; }
+  .stage__index { grid-area: index; }
+  .stage__body { grid-area: body; }
+  .stage__art { grid-area: art; max-width: 200px; }
+}
+@media (max-width: 767px) {
+  .stage { grid-template-columns: 34px minmax(0, 1fr); }
+  .stage__art { max-width: 160px; }
+}
+
+/* Tablet — stage grid balanced */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .stage {
+    grid-template-columns: 48px minmax(0, 1fr) 160px !important;
+    gap: clamp(12px, 2vw, 24px) !important;
+  }
+  .stage__art { max-width: 160px; }
+}
+
+/* Small phones — stack completely */
+@media (max-width: 640px) {
+  .stage {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 28px 0 !important;
+  }
+  .stage__index {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--accent-soft);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+  .stage__art { max-width: 100%; margin-top: 8px; }
+}

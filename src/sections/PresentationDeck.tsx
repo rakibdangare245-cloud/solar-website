@@ -1,0 +1,126 @@
+﻿import { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { PRESENTATION_SLIDES } from '../config/content';
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface PresentationDeckProps { readonly reducedMotion: boolean; }
+
+export function PresentationDeck({ reducedMotion }: PresentationDeckProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const slidesRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const slidesWrap = slidesRef.current;
+    if (!section || !slidesWrap || reducedMotion) return;
+
+    const slides = Array.from(slidesWrap.querySelectorAll<HTMLElement>('.deck__slide'));
+
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      // Desktop: pinned cross-fade deck
+      mm.add('(min-width: 1024px)', () => {
+        gsap.set(slides, { opacity: 0, y: 40 });
+        gsap.set(slides[0], { opacity: 1, y: 0 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${slides.length * window.innerHeight * 0.9}`,
+            scrub: 0.5,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const idx = Math.min(slides.length - 1, Math.floor(self.progress * slides.length));
+              setActive(idx);
+            },
+          },
+        });
+
+        slides.forEach((slide, index) => {
+          if (index === 0) return;
+          const at = index - 1;
+          tl.to(slides[index - 1], { opacity: 0, y: -30, duration: 0.35, ease: 'power2.in' }, at);
+          tl.fromTo(slide, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, at + 0.2);
+        });
+
+        return () => { tl.kill(); };
+      });
+
+      // Mobile/tablet: normal vertical flow with reveal
+      mm.add('(max-width: 1023px)', () => {
+        gsap.set(slides, { opacity: 0, y: 30 });
+
+        slides.forEach((slide, index) => {
+          gsap.to(slide, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: {
+              trigger: slide,
+              start: 'top 85%',
+              once: true,
+              onEnter: () => setActive(index),
+            },
+          });
+        });
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, [reducedMotion]);
+
+  return (
+    <section className="deck" id="presentation" ref={sectionRef}>
+      <div className="deck__chrome">
+        <div className="container deck__chrome-inner">
+          <span className="deck__eyebrow">Overview</span>
+          <span className="deck__counter">
+            {String(active + 1).padStart(2, '0')} / {String(PRESENTATION_SLIDES.length).padStart(2, '0')}
+          </span>
+        </div>
+      </div>
+
+      <div className="deck__stage" ref={slidesRef}>
+        {PRESENTATION_SLIDES.map((slide, index) => (
+          <article className="deck__slide" key={slide.index} data-active={index === active}>
+            <div className="container deck__slide-grid">
+              <aside className="deck__meta">
+                <span className="deck__meta-index">{slide.index}</span>
+                <span className="deck__meta-eyebrow">{slide.eyebrow}</span>
+              </aside>
+
+              <div className="deck__main">
+                <h3 className="deck__title">{slide.title}</h3>
+                <p className="deck__body">{slide.body}</p>
+
+                <ul className="deck__points">
+                  {slide.points.map((point, i) => (
+                    <li key={point}>
+                      <span className="deck__point-num">{String(i + 1).padStart(2, '0')}</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="deck__rail" aria-hidden="true">
+        {PRESENTATION_SLIDES.map((slide, index) => (
+          <span
+            key={slide.index}
+            className={`deck__rail-dot${index === active ? ' is-active' : ''}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}

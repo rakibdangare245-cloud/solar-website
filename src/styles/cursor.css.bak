@@ -1,0 +1,24 @@
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [data-cursor] { cursor: none; }
+
+.cursor { position: fixed; top: 0; left: 0; z-index: 2000; pointer-events: none; will-change: transform; }
+.cursor__dot, .cursor__ring, .cursor__label { position: absolute; top: 0; left: 0; width: 0; height: 0; }
+.cursor__dot span { position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+.cursor__ring span {
+  position: absolute; left: -17px; top: -17px; width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.42s ease, opacity 0.42s ease;
+}
+.cursor__label {
+  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink); white-space: nowrap; transform: translate(24px, -24px);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.cursor[data-state='link'] .cursor__ring span { transform: scale(1.32); border-color: rgba(242, 239, 233, 0.7); }
+.cursor[data-state='cta'] .cursor__ring span { transform: scale(1.85); border-color: var(--accent); }
+.cursor[data-state='cta'] .cursor__dot span { background: var(--accent); }
+.cursor[data-state='drag'] .cursor__ring span { transform: scale(1.6); border-color: var(--accent); }
+.cursor[data-state='view'] .cursor__ring span { transform: scale(2.1); border-color: var(--accent); }
+.cursor[data-state='view'] .cursor__label, .cursor[data-state='drag'] .cursor__label { opacity: 1; }

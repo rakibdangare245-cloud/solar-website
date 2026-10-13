@@ -1,0 +1,166 @@
+﻿/* ============================================================
+   SOLUTIONS + TESTIMONIALS SLIDERS — theme-aware
+   ============================================================ */
+
+.solutions {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  overflow: hidden;
+}
+.solutions__head { max-width: 720px; margin-bottom: clamp(36px, 5vh, 60px); }
+.solutions__eyebrow { display:block; font-size:.68rem; letter-spacing:.34em; text-transform:uppercase; color: var(--ink-faint); }
+.solutions__title { margin-top:16px; font-size: clamp(1.8rem,3.6vw,3rem); line-height:1.05; letter-spacing:-.03em; font-weight:500; text-transform:uppercase; }
+.solutions__lede { margin-top:18px; max-width:52ch; font-size:1rem; line-height:1.65; color: var(--ink-dim); }
+
+.solutions__slider { margin-top: clamp(30px,5vh,56px); padding: 0 var(--gutter); }
+.solutions__slider .swiper { padding-bottom: 60px; }
+.solutions__slider .swiper-pagination { bottom: 0 !important; }
+.solutions__slider .swiper-pagination-bullet {
+  background: var(--ink-faint); opacity: 1; width: 6px; height: 6px;
+  transition: background-color .3s var(--ease), transform .3s var(--ease);
+}
+.solutions__slider .swiper-pagination-bullet-active {
+  background: var(--accent); transform: scale(1.4);
+}
+.solutions__slider .swiper-button-prev,
+.solutions__slider .swiper-button-next {
+  color: var(--ink);
+  width: 44px; height: 44px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition: background-color .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+}
+.solutions__slider .swiper-button-prev:hover,
+.solutions__slider .swiper-button-next:hover {
+  background: var(--accent); border-color: var(--accent); color: var(--bg-deep);
+}
+.solutions__slider .swiper-button-prev::after,
+.solutions__slider .swiper-button-next::after { font-size: 14px; font-weight: 700; }
+
+.solution-card {
+  position: relative;
+  display: flex; flex-direction: column;
+  gap: 14px;
+  padding: 28px 26px 32px;
+  min-height: 280px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition: transform .4s var(--ease), border-color .3s var(--ease),
+              background-color .3s var(--ease), box-shadow .3s var(--ease);
+  cursor: pointer;
+  overflow: hidden;
+}
+.solution-card::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(circle at 30% 0%, var(--accent-soft), transparent 60%);
+  opacity: 0;
+  transition: opacity .4s var(--ease);
+  pointer-events: none;
+}
+.solution-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+}
+.solution-card:hover::before { opacity: 1; }
+.solution-card__index { font-family: var(--font-mono); font-size:.7rem; letter-spacing:.24em; color: var(--accent); }
+.solution-card__title { font-size: clamp(1.15rem,1.6vw,1.4rem); line-height:1.15; letter-spacing:-.015em; font-weight:500; text-transform:uppercase; }
+.solution-card__summary { font-size:.92rem; line-height:1.6; color: var(--ink-dim); flex: 1; }
+.solution-card__bullets { display:flex; flex-wrap:wrap; gap:8px; }
+.solution-card__bullets li {
+  padding: 5px 11px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: .72rem;
+  color: var(--ink-dim);
+  letter-spacing: .04em;
+}
+.solution-card__arrow {
+  align-self: flex-end;
+  font-size: 1.4rem;
+  color: var(--accent);
+  transition: transform .4s var(--ease);
+}
+.solution-card:hover .solution-card__arrow { transform: translateX(6px); }
+
+/* ---------- Testimonials ---------- */
+.testimonials {
+  position: relative;
+  padding: var(--section-y) 0;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+}
+.testimonials__head { max-width: 720px; margin-bottom: clamp(36px,5vh,60px); }
+.testimonials__eyebrow { display:block; font-size:.68rem; letter-spacing:.34em; text-transform:uppercase; color: var(--ink-faint); }
+.testimonials__title { margin-top:16px; font-size: clamp(1.8rem,3.4vw,2.8rem); line-height:1.05; letter-spacing:-.03em; font-weight:500; text-transform:uppercase; }
+.testimonials__slider {
+  margin-top: clamp(30px,5vh,56px);
+  padding: 0 var(--gutter);
+  max-width: 980px; margin-left:auto; margin-right:auto;
+}
+.testimonials__slider .swiper { padding-bottom: 70px; }
+.testimonials__slider .swiper-pagination { bottom: 10px !important; }
+.testimonials__slider .swiper-pagination-bullet {
+  background: var(--ink-faint); opacity: 1; width: 6px; height: 6px;
+  transition: background-color .3s var(--ease), transform .3s var(--ease);
+}
+.testimonials__slider .swiper-pagination-bullet-active {
+  background: var(--accent); transform: scale(1.4);
+}
+.testimonials__slider .swiper-button-prev,
+.testimonials__slider .swiper-button-next {
+  color: var(--ink);
+  width: 44px; height: 44px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition: background-color .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+}
+.testimonials__slider .swiper-button-prev:hover,
+.testimonials__slider .swiper-button-next:hover {
+  background: var(--accent); border-color: var(--accent); color: var(--bg-deep);
+}
+.testimonials__slider .swiper-button-prev::after,
+.testimonials__slider .swiper-button-next::after { font-size: 14px; font-weight: 700; }
+
+.testimonial {
+  padding: clamp(28px, 5vw, 56px);
+  background: var(--bg-glass);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.testimonial__quote {
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.testimonial__caption {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-top: clamp(20px, 3vh, 32px);
+  padding-top: clamp(20px, 3vh, 32px);
+  border-top: 1px solid var(--line);
+}
+.testimonial__author { font-size:.85rem; letter-spacing:.14em; text-transform:uppercase; color: var(--ink); }
+.testimonial__role { font-size:.78rem; color: var(--ink-faint); letter-spacing:.06em; }
+
+@media (max-width: 767px) {
+  .solution-card {
+    padding: 22px 20px 26px;
+    min-height: 0;
+  }
+  .solutions__slider { padding: 0 20px; }
+}
+

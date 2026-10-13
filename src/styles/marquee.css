@@ -1,0 +1,36 @@
+﻿.marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 0;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.marquee__track {
+  max-width: none;   /* allow infinite scroll */
+}
+.marquee__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 56px;
+  padding-left: 56px;
+  white-space: nowrap;
+  will-change: transform;
+}
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.marquee__dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
